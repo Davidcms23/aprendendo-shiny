@@ -1,11 +1,22 @@
 library(shiny)
 
 ui <- fluidPage(
-  "Hello, world!"
+  selectInput("dataset", label = "Conjunto de dados", choices = ls("package:datasets")),
+  verbatimTextOutput("summary"),
+  tableOutput("table")
 )
 
-server <- function(input, output, session) {
+server <- \(input, output, session) {
+  output$summary <- renderPrint({
+    dataset <- iris #get(input$dataset, "package:datasets")
+    summary(dataset)
+  })
   
+  output$table <- renderTable({
+    dataset <- iris #get(input$dataset, "package:datasets")
+    dataset
+  })
 }
 
 shinyApp(ui, server)
+

@@ -16,15 +16,30 @@ library(shiny)
 
 # Tabelas -----------------------------------------------------------------
 
+# ui <- fluidPage(
+#   tableOutput("static"),
+#   dataTableOutput("dynamic")
+# )
+# 
+# server <- \(input, output, session){
+#   output$static <- renderTable(head(mtcars))
+#   output$dynamic <- renderDataTable(mtcars, options = list(pageLength = 5))
+# }
+
+
+# Gráficos ----------------------------------------------------------------
+
 ui <- fluidPage(
-  tableOutput("static"),
-  dataTableOutput("dynamic")
+  plotOutput("plot", width = "400px")
 )
 
 server <- \(input, output, session){
-  output$static <- renderTable(head(mtcars))
-  output$dynamic <- renderDataTable(mtcars, options = list(pageLength = 5))
+  output$plot <- renderPlot(plot(1:5), res = 96)
 }
 
+
+# Downloads ---------------------------------------------------------------
+
+# Com funções downloadButton() ou downloadLink(), só no Capítulo 9
 
 shinyApp(ui, server)

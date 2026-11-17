@@ -2,7 +2,6 @@ library(shiny)
 
 # Texto -------------------------------------------------------------------
 
-
 # ui <- fluidPage(
 #   textOutput("text"),
 #   verbatimTextOutput("print")
@@ -12,7 +11,6 @@ library(shiny)
 #   output$text <- renderText("Hello!")
 #   output$print <- renderPrint("Hello!")
 # }
-
 
 # Tabelas -----------------------------------------------------------------
 
@@ -26,7 +24,6 @@ library(shiny)
 #   output$dynamic <- renderDataTable(mtcars, options = list(pageLength = 5))
 # }
 
-
 # Gráficos ----------------------------------------------------------------
 
 ui <- fluidPage(
@@ -36,7 +33,6 @@ ui <- fluidPage(
 server <- \(input, output, session){
   output$plot <- renderPlot(plot(1:5), res = 96)
 }
-
 
 # Downloads ---------------------------------------------------------------
 

@@ -1,11 +1,18 @@
 library(shiny)
+library(DT)
 
 ui <- fluidPage(
-  dataTableOutput("table")
+  DTOutput("table")
 )
 
 server <- \(input, output, session){
-  output$table <- renderDataTable(mtcars, options = list(pageLength = 5))
+  output$table <- renderDT(mtcars, options = list(
+    pageLength = 5,
+    searching = F,
+    ordering = F,
+    lengthChange = F
+    ),
+                                  )
 }
 
 shinyApp(ui, server)

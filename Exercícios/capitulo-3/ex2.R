@@ -5,29 +5,23 @@ ui <- fluidPage(
   textOutput("greeting")
 )
 
-library(shiny)
+server1 <- function(input, output, session) {
+  c <- reactive(input$a + input$b)
+  e <- reactive(c() + input$d)
+  output$f <- renderText(e())
+}; shinyApp(ui, server1)
 
-ui <- fluidPage(
-  textInput("name", "Qual o seu nome?"),
-  textOutput("greeting")
-)
+# server2 <- function(input, output, session) {
+#   x <- reactive(input$x1 + input$x2 + input$x3)
+#   y <- reactive(input$y1 + input$y2)
+#   output$z <- renderText(x() / y())
+# }; shinyApp(ui, server2)
 
-# server1 <- \(input, output, session){
-#   input$greeting <- renderText(
-#     paste0("Olá ", input$name)
-#   )
-# }
-
-server2 <- \(input, output, session){
-  greeting <- reactive(paste0("Hello ", input$name))
-  output$greeting <- renderText(greeting())
-}
-
-# server3 <- \(input, output, session){
-#   output$greeting <- paste0( # greting
-#     "Hello", input$name
-#   )
-# }
+# server3 <- function(input, output, session) {
+#   d <- reactive(c() ^ input$d)
+#   a <- reactive(input$a * 10)
+#   c <- reactive(b() / input$c)
+#   b <- reactive(a() + input$b)
+# }; shinyApp(ui, server3)
 
 
-shinyApp(ui, server)

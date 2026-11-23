@@ -9,7 +9,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-    string <- reactive(paste0("Hello ", input$name, "!"))
+    string <- reactive(paste0("Hello ", input$name, "!")) # expressão reativa
     output$greeting <- renderText(string())
 }
 

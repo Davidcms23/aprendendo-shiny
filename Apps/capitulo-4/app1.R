@@ -1,7 +1,7 @@
 library(shiny)
 library(DT)
 
-source("chama.R")
+#source("chama.R")
 
 count_top <- function(df, var, n = 5) {
   df %>%
@@ -14,12 +14,14 @@ prod_codes <- setNames(products$prod_code, products$title)
 
 ui <- fluidPage(
   fluidRow(
-    column(8,
+    column(6,
            selectInput("code", "Product", choices = prod_codes, width = "100%")
     ),
     column(2,
            selectInput("y", "Y axis", c("rate", "count"))
-    )
+    ),
+    column(2,
+           numericInput("mm", "N rows", value=1, min=1, max=10))
   ),
   fluidRow(
     column(4, tableOutput("diag")),

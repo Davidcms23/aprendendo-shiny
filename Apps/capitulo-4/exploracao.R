@@ -11,9 +11,9 @@ library(tidyverse)
 # download("population.tsv")
 # download("products.tsv")
 
-(injuries <- vroom::vroom("neiss/injuries.tsv.gz"))
-(products <- vroom::vroom("neiss/products.tsv"))
-(population <- vroom::vroom("neiss/population.tsv"))
+(injuries <- vroom::vroom("C:/Users/f210304/Documents/aprendendo/aprendendo-shiny/apps/capitulo-4/neiss/injuries.tsv.gz"))
+(products <- vroom::vroom("C:/Users/f210304/Documents/aprendendo/aprendendo-shiny/apps/capitulo-4/neiss/products.tsv"))
+(population <- vroom::vroom("C:/Users/f210304/Documents/aprendendo/aprendendo-shiny/apps/capitulo-4/neiss/population.tsv"))
 
 
 # exploração --------------------------------------------------------------

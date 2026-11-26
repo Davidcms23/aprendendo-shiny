@@ -15,6 +15,15 @@ ui <- fluidPage(
            selectInput("code", "Product", choices = prod_codes)
     )
   ),
+  fluidRowm(
+    column(8,
+           selectInput("code", "Product",
+                       choices = setNames(products$prod_code, products$title),
+                       width = "100%"
+           )
+    ),
+    column(2, selectInput("y", "Y axis", c("rate", "count")))
+  ),
   fluidRow(
     column(4, tableOutput("diag")),
     column(4, tableOutput("body_part")),
@@ -39,6 +48,19 @@ server <- \(input, output, session){
     count_top(selected(), diag),
     width = "100%"
   )
+  output$age_sex <- renderPlot({
+    if (input$y == "count"){
+      summary() |> 
+        ggplot(aes(age, n, colour = sex)) +
+        geom_lines() +
+        labs(y = "Numero estimado de lesões")
+    }else {
+      summary() |> 
+        ggplot(aes(age, rate, colour = sex)) +
+        geom_line(na.rm = T) +
+        labs(y = "Numero estimado de lesões")
+    }
+  }, res = 96)
   output$body_part <- renderTable(
     count_top(selected(), body_part),
     width = "100%"
